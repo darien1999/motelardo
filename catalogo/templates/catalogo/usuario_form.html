@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="title">
+  <p>¡Bienvenido <em> a motelardo!, cree su usario</em> </p>
+</div>
+<div class="contentBox">
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Registrar" />
+    
+</form>
+</div>
+{% endblock %}

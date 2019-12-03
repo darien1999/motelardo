@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <div class="title">
+    <h1>Usuario Lista</h1>
+  </div>
+  <div class="contentBox">
+    {% if usuario_list %}
+    <ul>
+
+      {% for usuario in usuario_list %}
+      <li>
+        <a href="{{ usuario.get_absolute_url }}">{{ usuario.nombre }}</a> - {{usuario.email}}
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no users in the library.</p>
+    {% endif %}       
+  </div>
+{% endblock %}
