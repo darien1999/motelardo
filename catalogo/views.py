@@ -14,15 +14,16 @@ def index(request):
     """
     # Genera contadores de algunos de los objetos principales
     num_usuarios=Usuario.objects.all().count()
-    
-    return render(request,'index.html',context={'num_usuarios':num_usuarios},
+    num_visits=request.session.get('num_vistis',0)
+    num_visits=request.session['num_visits']=num_visits+1
+    return render(request,'index.html',context={'num_usuarios':num_usuarios, 'num_visits':num_visits},
     )
 class usuarioCreateView(CreateView): 
     model = Usuario
     fields = '__all__'
 class usuarioDetailView(LoginRequiredMixin,generic.DetailView): 
     model = Usuario
-
+    success_url = reverse_lazy('usuarios')
 class usuarioListView(LoginRequiredMixin,generic.ListView):  
     model = Usuario
     paginate_by = 15
@@ -37,7 +38,7 @@ class usuarioDelete(LoginRequiredMixin,DeleteView):
 
 def principal(request):
 
-    return render(request,'principal.html',
+    return render(request,'Principal.html',
     )    
 
 def registro(request):
