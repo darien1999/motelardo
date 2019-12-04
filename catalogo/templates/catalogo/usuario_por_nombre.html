@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+    {% if status == 'SEARCH' %}
+        <div>
+            <p>Usuario encontrado satisfactoriamente</p>
+        </div>
+    {% endif %}
+
+    {% if status == 'NOTSEARCH' %}
+        <div>
+            <p>No se ha encontrado el usuario</p>
+        </div>
+    {% endif %}
+    <div class="title">
+        <h2>Listado Usuarios</h2>
+    </div>
+    <div class="contentBox">
+    {% for p in list %}
+        <li>{{ p.nombre }} {{p.apellido}} {{p.email}}</li> 
+
+
+    {% endfor %} 
+    </div>
+    <br>
+    <div class="contentBox">
+    <form method="POST"> {% csrf_token %}
+        <div class="from-group">
+            <label for="lblBuscar">Buscar:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="ingrese el nombre del usuario">
+            <button type="submit" name="submit">Buscar</button>
+        </div>
+    </div>
+    </form>
+
+    
+        
+{% endblock %}
